@@ -1,10 +1,12 @@
 package org.pragadeesh.fitnesstracker.service;
 
+import org.pragadeesh.fitnesstracker.model.JwtResponse;
 import org.pragadeesh.fitnesstracker.model.User;
 import org.pragadeesh.fitnesstracker.repository.UserRepository;
 import org.pragadeesh.fitnesstracker.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +39,19 @@ public class AuthenticationService {
         return "User registered Successfully!!!";
     }
 
-    git 
+    public JwtResponse login(User request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
+
+        User user = userRepository.findUserByUsername(request.getUsername()).orElseThrow();
+        String token = jwtUtil.generateToken(user);
+
+        return new JwtResponse(token);
+
+    }
+
 }

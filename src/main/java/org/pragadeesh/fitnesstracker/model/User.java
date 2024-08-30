@@ -36,6 +36,11 @@ public class User implements UserDetails {
     @Column(name = "created_At", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
