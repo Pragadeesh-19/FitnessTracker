@@ -23,30 +23,30 @@ public class WorkoutController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Workout>> getAllWorkouts(UUID userId) {
+    public ResponseEntity<List<Workout>> getAllWorkouts(@RequestParam UUID userId) {
         return new ResponseEntity<>(workoutService.getAllWorkouts(userId), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<Workout> createWorkout(@RequestParam UUID userId,
                                                  @RequestBody WorkoutDto workoutDto) {
-        return new ResponseEntity<>(workoutService.createWorkout(workoutDto, userId), HttpStatus.CREATED);
+        return new ResponseEntity<>(workoutService.createWorkout(userId, workoutDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Workout> updateWorkout(@PathVariable UUID id,
+    @PutMapping("/update/{workoutId}")
+    public ResponseEntity<Workout> updateWorkout(@PathVariable UUID workoutId,
                                                  @RequestBody WorkoutDto workoutDto) {
-        return new ResponseEntity<>(workoutService.updateWorkout(id, workoutDto), HttpStatus.OK);
+        return new ResponseEntity<>(workoutService.updateWorkout(workoutId, workoutDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteMapping(@PathVariable UUID id) {
-        workoutService.deleteWorkout(id);
+    @DeleteMapping("/delete/{workoutId}")
+    public void deleteMapping(@PathVariable UUID workoutId) {
+        workoutService.deleteWorkout(workoutId);
     }
 
-    @PutMapping("/status/{id}")
-    public ResponseEntity<Workout> changeWorkoutStatus(@PathVariable UUID id) {
-        return new ResponseEntity<>(workoutService.markWorkoutAsCompleted(id), HttpStatus.OK);
+    @PutMapping("/status/{workoutId}")
+    public ResponseEntity<Workout> changeWorkoutStatus(@PathVariable UUID workoutId) {
+        return new ResponseEntity<>(workoutService.markWorkoutAsCompleted(workoutId), HttpStatus.OK);
     }
 
 }

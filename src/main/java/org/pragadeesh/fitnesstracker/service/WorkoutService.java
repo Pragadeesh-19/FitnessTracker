@@ -26,12 +26,12 @@ public class WorkoutService {
         this.userRepository = userRepository;
     }
 
-    public Workout createWorkout(WorkoutDto workoutDto, UUID userId) {
+    public Workout createWorkout(UUID userId, WorkoutDto workoutDto) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found!!"));
 
         Workout workout = new Workout();
-        workout.setName(workout.getName());
+        workout.setName(workoutDto.getName());
         workout.setDate(workoutDto.getDate());
         workout.setStatus(Status.PENDING);
         workout.setUser(user);
@@ -52,7 +52,7 @@ public class WorkoutService {
         Workout workout = workoutRepository.findById(workoutId)
                 .orElseThrow(() -> new EntityNotFoundException("Workout not found!!"));
 
-        workout.setName(workout.getName());
+        workout.setName(workoutDto.getName());
         workout.setDate(workoutDto.getDate());
         return workoutRepository.save(workout);
     }
