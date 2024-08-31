@@ -1,6 +1,5 @@
 package org.pragadeesh.fitnesstracker.dto;
 
-import jakarta.annotation.Nonnull;
 import lombok.Data;
 
 @Data
