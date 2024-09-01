@@ -88,7 +88,7 @@ The Fitness Tracker Backend is a Spring Boot application that provides a compreh
 
 ### Testing
 
-Use Postman to test the API endpoints. Import the provided Postman collection (if available) for pre-defined tests.
+Use Postman to test the API endpoints.
 
 ### Contributing
 
