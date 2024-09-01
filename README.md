@@ -18,7 +18,7 @@ The Fitness Tracker Backend is a Spring Boot application that provides a compreh
 - **Spring Boot**: Framework for building the RESTful API.
 - **Spring Security**: Provides security and JWT-based authentication.
 - **PostgreSQL**: Database for data storage.
-- **JPA**: Java Persistence API for database operations.
+- **Spring Date JPA**: Java Persistence API for database operations.
 - **Postman**: Tool used for API testing.
 
 ## Getting Started
